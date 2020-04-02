@@ -9,7 +9,7 @@ from pathlib import Path
 from tkinter import filedialog
 from tkinter import ttk
 import tkinter as Tk
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk # pip install Pillow
 
 
 class View:
@@ -82,15 +82,11 @@ class View:
         # frame for content visualization        
         self.frameImage = Tk.LabelFrame(root, text='Preview', padx=5, pady=5, width=700, height=500)
         self.frameImage.grid(row=1, column=1, padx=(0, 5), rowspan=4, sticky=Tk.N + Tk.S + Tk.E + Tk.W)
-        self.imageOriginal1 = Image.open("data/Radargram.jpg")
-        #self.imageResized = self.imageOriginal1.resize((400, 400), Image.ANTIALIAS)
+        self.imageOriginal1 = Image.open("data/Radargram.jpg")        #self.imageResized = self.imageOriginal1.resize((400, 400), Image.ANTIALIAS)
 
         self.imageOriginal2 = ImageTk.PhotoImage(self.imageOriginal1)
         self.imageDisplay = Tk.Canvas(self.frameImage, width=500, height=300)
         self.imageDisplay.create_image(0, 0, image=self.imageOriginal2, anchor=Tk.NW, tags="IMG")
-        #self.text1 = Tk.Label(self.frameImage, imageOriginal1=self.imageOriginal2)
-#         self.text1.insert(Tk.END, '\n')
-#         self.text1.image_create(Tk.END, imageOriginal1=self.imageOriginal2)
         self.imageDisplay.grid(row=0, column=0, sticky=Tk.N + Tk.S + Tk.E + Tk.W)
         self.frameImage.bind("<Configure>", self.resizeContentWindow)
 
